@@ -61,53 +61,17 @@
                       />
                     </li>
                     <li class="InstructionList-item">
-                      <p>Generate a Private and Public Key pair.</p>
-                      <button class="Button" id="key-generate">
-                        Generate Private Public Key Pair
-                      </button>
-                      <p>
-                        The Private Key will be used in your Precog
-                        configuration, and the Public key will be used in your
-                        Snowflake account. You can find more information about
-                        key pair authentication in the
-                        <a
-                          href="https://docs.snowflake.com/en/user-guide/key-pair-auth"
-                          >Snowflake documentation</a
-                        >.
-                      </p>
-                      <p>Kind of keys - RSA 2048</p>
-                      <p>Unencryped vs encrypted</p>
-                      <p>
-                        if you want to generate your own just make sure you
-                        change the values in the script and form below.
-                      </p>
-                      <p>
-                        <strong
-                          >Assign your Public Key in your Snowflake
-                          account.</strong
-                        >
-                        Add the following statement to the new worksheet.
-                      </p>
-                      <code
-                        >ALTER USER <strong>precog</strong> SET
-                        RSA_PUBLIC_KEY=’<strong>Your public key here</strong>’;
-                      </code>
-                      <p>
-                        Copy your Public Key into the statement between single
-                        quotes. Do not include the “BEGIN and END” lines. For
-                        example, ALTER USER <strong>precog</strong> SET
-                        RSA_PUBLIC_KEY='<strong
-                          >MIIBIjANBgkqhkiG9w0B . . .</strong
-                        >';
-                      </p>
-                    </li>
-                    <li class="InstructionList-item">
                       <p>
                         Paste the following SQL statements into the new
                         worksheet. This will create a service user, database,
                         and warehouse named “precog”. This service user will be
                         authenticated with the generated Public and Private Key
-                        pair.
+                        pair. You can find more information about key pair
+                        authentication in the
+                        <a
+                          href="https://docs.snowflake.com/en/user-guide/key-pair-auth"
+                          >Snowflake documentation</a
+                        >.
                       </p>
                       <div class="CodeBlock">
                         <pre class="CodeBlock-code">
@@ -121,10 +85,10 @@
       CREATE OR REPLACE USER precog LOGIN_NAME = precog DISPLAY_NAME = precog DEFAULT_WAREHOUSE = precog;
       GRANT ROLE precog TO USER precog;
       ALTER USER precog SET default_role=precog;
-      ALTER USER precog SET RSA_PUBLIC_KEY=’PUBLIC Key here’;
       GRANT USAGE ON ALL SCHEMAS IN DATABASE precog TO ROLE precog;
       GRANT USAGE ON FUTURE SCHEMAS IN DATABASE precog TO ROLE precog;
-      GRANT ROLE precog TO ROLE sysadmin;</pre
+      GRANT ROLE precog TO ROLE sysadmin;
+      ALTER USER precog SET RSA_PUBLIC_KEY=’PUBLIC Key here’;</pre
                         >
                         <button
                           class="Button CodeBlock-copyButton"
@@ -148,8 +112,8 @@
                         <strong>Warehouse</strong>, and
                         <strong>User</strong> named <code>precog</code>. These
                         values have all been populated in the form below. Please
-                        update the form if you modified the names, roles, or the
-                        Public Key in the script.
+                        update the form if you modified the names or roles in
+                        the script.
                       </p>
                     </li>
                     <li class="InstructionList-item">
@@ -208,10 +172,9 @@
                     </div>
                     <div class="Field-description">
                       <p>
-                        Upload the Private Key (encrypted or unencrypted) into
-                        your Precog account. Only required if you are not
-                        generating the key pair in the browser in the previous
-                        step.
+                        Not recommended. Required only for use cases where the
+                        key pair provided by Preocg is not being used to
+                        authenticate.
                       </p>
                     </div>
                     <label class="Upload"
@@ -229,8 +192,10 @@
                     </div>
                     <div class="Field-description">
                       <p>
-                        Password for your encrypted Private Key. Leave empty if
-                        you chose to use an unencrypted Private Key.
+                        Required only for use cases where the key pair provided
+                        by Preocg is not being used to authenticate. Password
+                        for your encrypted Private Key. Leave empty if you used
+                        an unencrypted Private Key.
                       </p>
                     </div>
                     <input class="Input" type="password" placeholder=""
