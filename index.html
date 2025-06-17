@@ -63,15 +63,7 @@
                     <li class="InstructionList-item">
                       <p>
                         Paste the following SQL statements into the new
-                        worksheet. This will create a service user, database,
-                        and warehouse named “precog”. This service user will be
-                        authenticated with the generated Public and Private Key
-                        pair. You can find more information about key pair
-                        authentication in the
-                        <a
-                          href="https://docs.snowflake.com/en/user-guide/key-pair-auth"
-                          >Snowflake documentation</a
-                        >.
+                        worksheet.
                       </p>
                       <div class="CodeBlock">
                         <pre class="CodeBlock-code">
@@ -100,20 +92,23 @@
                     </li>
                     <li class="InstructionList-item">
                       <p>
-                        Click on the <strong>Run All</strong> option, the
-                        down-arrow icon in the top right corner.
+                        Click on the <strong>Run All</strong> option, revealed
+                        after clicking on the down-arrow icon in the top right
+                        corner.
                       </p>
                       <img
                         class="InstructionsImage"
                         src="img/run-all-worksheet.png"
                       />
+                    </li>
+                    <li class="InstructionList-item">
                       <p>
                         You should now have a <strong>Database</strong>,
                         <strong>Warehouse</strong>, and
                         <strong>User</strong> named <code>precog</code>. These
-                        values have all been populated in the form below. Please
-                        update the form if you modified the names or roles in
-                        the script.
+                        values have all been populated in the configuration form
+                        below. Please update the form if you modified the names
+                        or roles in the script.
                       </p>
                     </li>
                     <li class="InstructionList-item">
@@ -172,9 +167,14 @@
                     </div>
                     <div class="Field-description">
                       <p>
-                        Not recommended. Required only for use cases where the
-                        key pair provided by Preocg is not being used to
-                        authenticate.
+                        If the user has been set up with a public key other than
+                        the one provided in the setup script above, upload the
+                        private key PEM file here. For more information refer to
+                        the
+                        <a
+                          href="https://docs.snowflake.com/en/user-guide/key-pair-auth.html"
+                          >Snowflake documentation</a
+                        >.
                       </p>
                     </div>
                     <label class="Upload"
@@ -192,10 +192,8 @@
                     </div>
                     <div class="Field-description">
                       <p>
-                        Required only for use cases where the key pair provided
-                        by Preocg is not being used to authenticate. Password
-                        for your encrypted Private Key. Leave empty if you used
-                        an unencrypted Private Key.
+                        Leave empty if you are not providing your own private
+                        key or if the key is not encrypted.
                       </p>
                     </div>
                     <input class="Input" type="password" placeholder=""
